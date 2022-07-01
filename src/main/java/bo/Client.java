@@ -13,7 +13,7 @@ public class Client {
 
     private String nom;
     private String prenom;
-    private int taille;
+    private float taille;
     private double portefeuille;
 
     @OneToMany(mappedBy = "client", orphanRemoval = true)
@@ -61,11 +61,11 @@ public class Client {
         this.prenom = prenom;
     }
 
-    public int getTaille() {
+    public float getTaille() {
         return taille;
     }
 
-    public void setTaille(int taille) {
+    public void setTaille(float taille) {
         this.taille = taille;
     }
 

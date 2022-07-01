@@ -1,4 +1,4 @@
-package bll;
+package dal;
 
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;

@@ -1,6 +1,6 @@
 package dal;
 
-import bll.ConnectionManager;
+import bo.Location;
 import bo.Velo;
 
 import javax.persistence.EntityManager;
@@ -44,4 +44,5 @@ public class VeloDAO implements DAO<Velo> {
     public Velo selectById(long id) throws DALException {
         return em.find(Velo.class, id);
     }
+
 }

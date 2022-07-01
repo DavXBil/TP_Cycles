@@ -8,27 +8,45 @@ import java.util.Set;
 @Entity
 public class Location {
     @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
     @Column(name = "id", nullable = false)
     private Long id;
 
-    private LocalDate dateLocation;
+    private LocalDate debutLocation;
+    private LocalDate finLocation;
+
+
+    public LocalDate getDebutLocation() {
+        return debutLocation;
+    }
+
+    public void setDebutLocation(LocalDate debutLocation) {
+        this.debutLocation = debutLocation;
+    }
+
+    public LocalDate getFinLocation() {
+        return finLocation;
+    }
+
+    public void setFinLocation(LocalDate finLocation) {
+        this.finLocation = finLocation;
+    }
 
     @ManyToOne
     @JoinColumn(name = "client_id")
     private Client client;
 
-    @ManyToOne
-    @JoinColumn(name = "cycle_id")
-    private Cycle cycle;
+    @OneToMany(orphanRemoval = true)
+    @JoinColumn(name = "location_id")
+    private Set<Cycle> cycles = new LinkedHashSet<>();
 
-    public Cycle getCycle() {
-        return cycle;
+    public Set<Cycle> getCycles() {
+        return cycles;
     }
 
-    public void setCycle(Cycle cycle) {
-        this.cycle = cycle;
+    public void setCycles(Set<Cycle> cycles) {
+        this.cycles = cycles;
     }
-
 
     public Client getClient() {
         return client;
@@ -38,12 +56,23 @@ public class Location {
         this.client = client;
     }
 
+
     public Long getId() {
         return id;
     }
 
     public void setId(Long id) {
         this.id = id;
+    }
+
+    @Override
+    public String toString() {
+        final StringBuilder sb = new StringBuilder("Location{");
+        sb.append("debutLocation=").append(debutLocation);
+        sb.append(", finLocation=").append(finLocation);
+        sb.append(", client=").append(client);
+        sb.append('}');
+        return sb.toString();
     }
 
 

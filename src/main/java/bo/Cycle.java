@@ -2,21 +2,10 @@ package bo;
 
 import javax.persistence.*;
 import java.time.LocalDate;
-import java.util.LinkedHashSet;
-import java.util.Set;
 
 @Entity
 @Inheritance(strategy = InheritanceType.JOINED)
 public abstract class Cycle{
-
-    public Cycle() {
-    }
-
-    public Cycle(String marque, String modele, LocalDate dateAchat) {
-        this.marque = marque;
-        this.modele = modele;
-        this.dateAchat = dateAchat;
-    }
 
 
     @Id
@@ -30,16 +19,15 @@ public abstract class Cycle{
 
     private LocalDate dateAchat;
 
-    @OneToMany(mappedBy = "cycle", orphanRemoval = true)
-    private Set<Location> locations = new LinkedHashSet<>();
-
-    public Set<Location> getLocations() {
-        return locations;
+    public Cycle() {
     }
 
-    public void setLocations(Set<Location> locations) {
-        this.locations = locations;
+    public Cycle(String marque, String modele, LocalDate dateAchat) {
+        this.marque = marque;
+        this.modele = modele;
+        this.dateAchat = dateAchat;
     }
+
 
     public Long getId() {
         return id;

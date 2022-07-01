@@ -1,9 +1,7 @@
 package dal;
 
 
-import bll.ConnectionManager;
 import bo.Gyroroue;
-import bo.Velo;
 
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;

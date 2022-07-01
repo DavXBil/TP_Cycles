@@ -1,7 +1,5 @@
 package dal;
 
-import bll.ConnectionManager;
-import bo.Client;
 import bo.Location;
 
 import javax.persistence.EntityManager;

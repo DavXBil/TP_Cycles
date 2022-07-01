@@ -1,8 +1,6 @@
 package dal;
 
-import bll.ConnectionManager;
 import bo.Gyropode;
-import bo.Gyroroue;
 
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;

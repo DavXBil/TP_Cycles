@@ -1,8 +1,6 @@
 package dal;
 
-import bll.ConnectionManager;
 import bo.Client;
-import bo.Velo;
 
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
@@ -43,6 +41,6 @@ public class ClientDAO implements DAO<Client>{
 
     @Override
     public Client selectById(long id) throws DALException {
-        return null;
+        return em.find(Client.class, id);
     }
 }

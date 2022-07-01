@@ -1,4 +1,6 @@
+import bll.LocationService;
 import bo.Client;
+import bo.Cycle;
 import bo.Velo;
 import dal.ClientDAO;
 import dal.DALException;
@@ -6,6 +8,8 @@ import dal.DAOFactory;
 import dal.VeloDAO;
 
 import java.time.LocalDate;
+import java.util.HashSet;
+import java.util.Set;
 
 public class AppCycle {
 
@@ -15,30 +19,33 @@ public class AppCycle {
         VeloDAO veloDAO = DAOFactory.getVeloDAO();
         ClientDAO clientDAO = DAOFactory.getClientDAO();
 
-        Velo velo = new Velo();
-        Velo velo2 = new Velo();
+        LocationService service = new LocationService();
 
-        velo.setMarque("Test");
-        velo.setModele("XB22");
-        velo.setDateAchat(LocalDate.now());
-        velo.setVitesse(6);
+        Velo newVelo = new Velo();
 
-        velo2.setMarque("Test");
-        velo2.setModele("XV88");
-        velo2.setDateAchat(LocalDate.now());
-        velo2.setVitesse(6);
+        newVelo.setMarque("Test");
+        newVelo.setModele("XB22");
+        newVelo.setDateAchat(LocalDate.now());
+        newVelo.setVitesse(6);
 
+        veloDAO.create(newVelo);
 
-        veloDAO.create(velo);
-        veloDAO.create(velo2);
+        Client newClient = new Client();
+        newClient.setNom("Doe");
+        newClient.setPrenom("Jane");
+        newClient.setTaille(1.70f);
+        newClient.setPortefeuille(500);
 
-        Client client = new Client();
-        client.setNom("Doe");
-        client.setPrenom("Jane");
-        client.setPortefeuille(500);
+        clientDAO.create(newClient);
 
-        clientDAO.create(client);
+        Set<Cycle> velos = new HashSet<Cycle>();
 
+        Velo velo = DAOFactory.getVeloDAO().selectById(1);
+
+        velos.add(velo);
+        Client client = clientDAO.selectById(2);
+
+        service.louer(client, velos);
     }
 
 }
